@@ -9,7 +9,7 @@ const catwaySchema = mongoose.Schema({
             },
             message: 'Le champ type doit être soit short soit long'
         } },
-    catwayState: { type: String, required: true }
+    catwayState: { type: Boolean, default: false, required: true }
 })
 
 module.exports = mongoose.model('Catway', catwaySchema)
