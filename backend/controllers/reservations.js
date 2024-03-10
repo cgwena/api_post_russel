@@ -1,5 +1,4 @@
 const Reservations = require('../models/reservations')
-const User = require('../models/users')
 const Catway = require('../models/catways')
 
 exports.createReservation = async (req, res, next) => {

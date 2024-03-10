@@ -49,7 +49,10 @@ exports.login = async (req, res, next) => {
                 res.header('Authorization', 'Bearer ' + token);
                 res.cookie('token', token, { maxAge: expireIn * 1000, httpOnly: true });
 
-                return res.status(200).json({ message: 'Utilisateur authentifié' });
+                return res.status(200).json({
+                    userId: user._id,
+                    token: token
+                });
             } else {
                 return res.status(403).json({ error: 'wrong_credentials' });
             }
