@@ -7,6 +7,13 @@ const SECRET_KEY = process.env.SECRET_KEY
 
 const User = require('../models/users')
 
+/**
+ * Crée un utilisateur.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - L'utilisateur créé
+ */
+
 exports.signup = async (req, res, next) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -23,6 +30,12 @@ exports.signup = async (req, res, next) => {
     }
 }
 
+/**
+ * Connecte un utilisateur.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - L'utilisateur est connecté
+ */
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -62,7 +75,12 @@ exports.login = async (req, res, next) => {
     }
 };
 
-
+/**
+ * Lit un utilisateur.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - Les détails d'un utilisateur
+ */
 
 exports.getOneUser = async (req, res, next) => {
     try {
@@ -77,6 +95,12 @@ exports.getOneUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Lit tous les utilisateurs.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - La liste des utilisateurs
+ */
 exports.getAllUsers = async (req, res, next) => {
     try {
         const users = await User.find()
@@ -85,6 +109,13 @@ exports.getAllUsers = async (req, res, next) => {
         res.status(400).json({ error })
     }
 };
+
+/**
+ * Met à jour un utilisateur.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - L'utilisateur mis à jour
+ */
 
 exports.updateUser = async (req, res, next) => {
     try {
@@ -101,6 +132,12 @@ exports.updateUser = async (req, res, next) => {
     }
 };
 
+/**
+ * Supprime un utilisateur.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {void}
+ */
 exports.deleteUser = async (req, res, next) => {
     try {
         await User.deleteOne({ _id: req.params.id })
