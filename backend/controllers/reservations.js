@@ -1,6 +1,13 @@
 const Reservations = require('../models/reservations')
 const Catway = require('../models/catways')
 
+/**
+ * Crée une réservation.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - La réservation créée
+ */
+
 exports.createReservation = async (req, res, next) => {
     try {
         const reservation = new Reservations({
@@ -19,7 +26,12 @@ exports.createReservation = async (req, res, next) => {
         res.status(400).json({ error })
     }
 };
-
+/**
+ * Lit une réservation.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - Les détails d'une réservation
+ */
 exports.getOneReservation = async (req, res, next) => {
     try {
         const reservation = await Reservations.findOne({ _id: req.params.idReservation })
@@ -31,7 +43,12 @@ exports.getOneReservation = async (req, res, next) => {
         res.status(400).json({ error })
     }
 };
-
+/**
+ * Lit toutes les réservations.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {object} - La liste des réservations
+ */
 exports.getAllReservations = async (req, res, next) => {
     try {
         const reservations = await Reservations.find()
@@ -41,6 +58,12 @@ exports.getAllReservations = async (req, res, next) => {
     }
 };
 
+/**
+ * Supprime une réservation.
+ * @param {object} req - L'objet de requête HTTP.
+ * @param {object} res - L'objet de réponse HTTP.
+ * @returns {void}
+ */
 exports.deleteReservation = async (req, res, next) => {
     try {
         const reservation = await Reservations.findOne({ _id: req.params.idReservation });
