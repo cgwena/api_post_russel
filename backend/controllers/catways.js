@@ -1,8 +1,8 @@
 const Catway = require('../models/catways')
 
 exports.createCatway = (req, res, next) => {
-    delete req.body._id;
     const catway = new Catway({
+        _id: req.body.catwayNumber,
         catwayNumber: req.body.catwayNumber,
         type: req.body.type,
         catwayState: req.body.catwayState,
@@ -13,7 +13,7 @@ exports.createCatway = (req, res, next) => {
 }
 
 exports.readAllCatways = (req, res, next) => {
-    Catway.find()
+    return Catway.find()
         .then(catways => res.status(200).json(catways))
         .catch(error => res.status(400).json({ error }));
 }

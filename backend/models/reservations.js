@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const reservationSchema = mongoose.Schema({
     catwayNumber: {type: Number, required: true},
     clientName: { type: String, required: true },
