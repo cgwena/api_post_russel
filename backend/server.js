@@ -12,6 +12,7 @@ const normalizePort = val => {
     }
     return false;
 };
+
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -43,39 +44,5 @@ server.on('listening', () => {
     const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
     console.log('Listening on ' + bind);
 });
-
-const options = {
-    definition: {
-        openapi: "3.1.0",
-        info: {
-            title: "LogRocket Express API with Swagger",
-            version: "0.1.0",
-            description:
-                "This is a simple CRUD API application made with Express and documented with Swagger",
-            license: {
-                name: "MIT",
-                url: "https://spdx.org/licenses/MIT.html",
-            },
-            contact: {
-                name: "LogRocket",
-                url: "https://logrocket.com",
-                email: "info@email.com",
-            },
-        },
-        servers: [
-            {
-                url: "http://localhost:3000",
-            },
-        ],
-    },
-    apis: ["./routes/*.js"],
-};
-
-const specs = swaggerJsdoc(options);
-app.use(
-    "/api-docs",
-    swaggerUi.serve,
-    swaggerUi.setup(specs, { explorer: true })
-);
 
 server.listen(port);
